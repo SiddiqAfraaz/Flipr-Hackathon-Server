@@ -2,11 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import homeRoutes from './routes/home.js'
+import signupRoutes from './routes/signup.js'
+
 
 const app = express();
 
 app.use('/', homeRoutes);
-app.use('/signup', homeRoutes);
+app.use('/signup', signupRoutes);
 app.use('/login', homeRoutes);
 
 app.use(express.json({limit: "30mb", extended: true}));
