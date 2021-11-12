@@ -6,6 +6,8 @@ import homeRoutes from './routes/home.js'
 const app = express();
 
 app.use('/', homeRoutes);
+app.use('/signup', homeRoutes);
+app.use('/login', homeRoutes);
 
 app.use(express.json({limit: "30mb", extended: true}));
 app.use(express.urlencoded({limit: "30mb", extended: true}));
