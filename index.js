@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import homeRoutes from './routes/home.js'
 import userRoutes from './routes/user.js'
+import restaurantRoutes from './routes/restaurant.js'
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use('/', homeRoutes);
 app.use('/user', userRoutes);
+app.use('/restaurant', restaurantRoutes);
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
