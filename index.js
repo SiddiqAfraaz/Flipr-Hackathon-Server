@@ -1,24 +1,23 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import homeRoutes from './routes/home.js'
-import signupRoutes from './routes/signup.js'
-
+import userRoutes from './routes/user.js'
 
 const app = express();
-
-app.use('/', homeRoutes);
-app.use('/signup', signupRoutes);
-app.use('/login', homeRoutes);
 
 app.use(express.json({limit: "30mb", extended: true}));
 app.use(express.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
-const CONNECTION_URL = "mongodb+srv://SiddiqAfraaz:Siddiq123@flipr-hackathon.5bvji.mongodb.net/Flipr-Hackathon?retryWrites=true&w=majority";
+app.use('/', homeRoutes);
+app.use('/user', userRoutes);
+
+dotenv.config();
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, ()=> console.log(`Server Started at Port: ${PORT}`)))
     .catch((error)=>console.error(error));
 
